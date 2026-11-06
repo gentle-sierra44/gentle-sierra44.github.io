@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛俄罗斯-每日大赛俄罗斯热点速览_俄罗斯大赛最新爆料与吃瓜合集</title>
+<meta name="description" content="每日大赛俄罗斯热点聚合页，集中呈现每日大赛俄罗斯的最新爆料、吃瓜动态与话题合集，按时间线整理热门条目，方便快速浏览当天的讨论焦点。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314151c'/%3E%3Cpath d='M14 40l10-18 8 12 6-8 12 14z' fill='%23e8b04b'/%3E%3Ccircle cx='46' cy='20' r='5' fill='%23e8503a'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#15161b;
+  --ink-2:#23252e;
+  --paper:#f6f4ef;
+  --paper-2:#ffffff;
+  --line:#e2ddd2;
+  --muted:#6c6a63;
+  --gold:#c58a1e;
+  --gold-soft:#f0e2c4;
+  --red:#c0392b;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;
+  background:rgba(21,22,27,.96);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(8px);
+}
+.head-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;min-height:66px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;}
+.brand svg{flex:none;}
+.brand-text{
+  font-size:1.06rem;font-weight:800;letter-spacing:.02em;
+  white-space:nowrap;
+}
+.brand-text em{font-style:normal;color:var(--gold);}
+.nav{display:flex;gap:4px;flex-wrap:wrap;}
+.nav a{
+  color:#cfcbc2;font-size:.9rem;padding:7px 12px;border-radius:8px;
+  transition:.2s;white-space:nowrap;
+}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.09);}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 380px at 12% -10%,rgba(197,138,30,.30),transparent 62%),
+    radial-gradient(700px 320px at 92% 0%,rgba(192,57,43,.24),transparent 60%),
+    linear-gradient(160deg,#15161b 0%,#22242e 58%,#1a1b22 100%);
+  color:#fff;
+  padding:52px 0 46px;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:22px 22px;
+  opacity:.7;
+}
+.hero .wrap{position:relative;z-index:2;}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.78rem;letter-spacing:.16em;color:var(--gold);
+  border:1px solid rgba(197,138,30,.45);
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;}
+h1{
+  font-size:clamp(1.9rem,5.2vw,3.1rem);
+  line-height:1.22;font-weight:900;letter-spacing:.01em;
+  margin-bottom:16px;
+}
+h1 span{color:var(--gold);}
+.hero-lead{
+  max-width:660px;color:#c9c5bc;font-size:1rem;margin-bottom:26px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:999px;font-size:.94rem;font-weight:700;
+  transition:.22s;border:1px solid transparent;
+}
+.btn-gold{background:var(--gold);color:#1a1509;}
+.btn-gold:hover{background:#d99c2c;transform:translateY(-1px);}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:#fff;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);}
+.hero-stats{
+  display:flex;gap:34px;flex-wrap:wrap;margin-top:36px;
+  padding-top:22px;border-top:1px solid rgba(255,255,255,.12);
+}
+.hero-stats div{min-width:96px;}
+.hero-stats b{display:block;font-size:1.5rem;color:var(--gold);font-weight:900;}
+.hero-stats small{color:#a7a39a;font-size:.8rem;letter-spacing:.04em;}
+
+/* ---------- sections ---------- */
+section{padding:56px 0;}
+.sec-head{margin-bottom:26px;}
+.sec-tag{
+  font-size:.76rem;letter-spacing:.18em;color:var(--gold);
+  font-weight:700;margin-bottom:8px;
+}
+h2{
+  font-size:clamp(1.3rem,2.6vw,1.65rem);font-weight:800;letter-spacing:.01em;
+}
+.sec-desc{color:var(--muted);font-size:.94rem;margin-top:8px;max-width:720px;}
+
+/* timeline */
+.timeline{position:relative;padding-left:26px;}
+.timeline::before{
+  content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(var(--gold),var(--line));
+}
+.tl-item{position:relative;margin-bottom:22px;}
+.tl-item::before{
+  content:"";position:absolute;left:-26px;top:8px;width:12px;height:12px;
+  border-radius:50%;background:var(--paper-2);border:3px solid var(--gold);
+}
+.tl-card{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;transition:.22s;
+}
+.tl-card:hover{border-color:#cfc4ab;box-shadow:0 8px 22px rgba(21,22,27,.06);}
+.tl-meta{
+  display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-size:.78rem;color:var(--muted);margin-bottom:6px;
+}
+.tag{
+  background:var(--gold-soft);color:#7a5308;border-radius:6px;
+  padding:1px 8px;font-weight:700;letter-spacing:.02em;
+}
+.tl-card h3{font-size:1.03rem;font-weight:800;margin-bottom:6px;}
+.tl-card p{font-size:.92rem;color:#4b4a44;}
+
+/* grid cards */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);}
+.card{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;display:flex;flex-direction:column;gap:10px;transition:.22s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(21,22,27,.08);border-color:#d3c8b0;}
+.card .ico{
+  width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:var(--gold-soft);
+}
+.card h3{font-size:1.02rem;font-weight:800;}
+.card p{font-size:.9rem;color:#4b4a44;}
+.card .more{
+  font-size:.84rem;font-weight:700;color:var(--gold);margin-top:auto;
+}
+
+/* dark band */
+.band{background:var(--ink);color:#e9e6de;}
+.band .sec-tag{color:var(--gold);}
+.band h2{color:#fff;}
+.band .sec-desc{color:#a7a39a;}
+.band-grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr);margin-top:8px;}
+.band-item{
+  border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);
+  padding:20px;background:rgba(255,255,255,.03);transition:.22s;
+}
+.band-item:hover{background:rgba(255,255,255,.07);border-color:rgba(197,138,30,.5);}
+.band-item h3{font-size:1rem;color:#fff;margin-bottom:6px;}
+.band-item p{font-size:.9rem;color:#a7a39a;}
+.band-item .num{
+  font-size:.78rem;color:var(--gold);font-weight:800;letter-spacing:.1em;margin-bottom:8px;
+}
+
+/* reading blocks */
+.reading{display:grid;gap:26px;grid-template-columns:1.45fr 1fr;}
+.prose p{font-size:.96rem;color:#3f3e39;margin-bottom:14px;}
+.prose p strong{color:var(--ink);}
+.side{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;height:fit-content;
+}
+.side h3{font-size:.98rem;font-weight:800;margin-bottom:14px;}
+.side ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.side li{
+  font-size:.88rem;color:#4b4a44;padding-left:16px;position:relative;
+}
+.side li::before{
+  content:"";position:absolute;left:0;top:9px;width:6px;height:6px;
+  border-radius:2px;background:var(--gold);
+}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:12px;max-width:860px;}
+details{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:12px;
+  padding:16px 20px;
+}
+details[open]{border-color:#d3c8b0;}
+summary{
+  cursor:pointer;font-weight:800;font-size:.96rem;list-style:none;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";color:var(--gold);font-weight:900;font-size:1.1rem;}
+details[open] summary::after{content:"–";}
+details p{font-size:.92rem;color:#4b4a44;margin-top:10px;}
+
+/* footer */
+footer{
+  background:#101116;color:#9a968d;padding:38px 0 28px;font-size:.86rem;
+}
+.foot-top{
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.foot-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap;}
+.foot-links a:hover{color:var(--gold);}
+.foot-bottom{padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#6c6a63;}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .reading{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .hero{padding:38px 0 34px;}
+  section{padding:40px 0;}
+  .grid{grid-template-columns:1fr;}
+  .band-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:22px;}
+  .nav a{font-size:.84rem;padding:6px 9px;}
+  .head-inner{min-height:auto;padding:12px 0;gap:10px;}
+  .brand-text{font-size:.98rem;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="每日大赛俄罗斯首页">
+      <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1f2129"/>
+        <path d="M12 42l11-20 9 13 6-9 13 16z" fill="#c58a1e"/>
+        <circle cx="47" cy="20" r="5.5" fill="#c0392b"/>
+      </svg>
+      <span class="brand-text">每日大赛俄罗斯</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#today">今日速览</a>
+      <a href="#sections">热门栏目</a>
+      <a href="#topics">话题合集</a>
+      <a href="#explain">背景说明</a>
+      <a href="#faq">常见疑问</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <span class="kicker"><i></i>热点内容首页 · 按日更新</span>
+      <h1 id="hero-title">每日大赛俄罗斯</h1>
+      <p class="hero-lead">
+        每日大赛俄罗斯聚焦当天围绕“大赛”话题在俄语圈与中文网络同步发酵的热点内容：爆料、争议、吃瓜与后续动态。页面按时间线梳理条目，把散落在各处的讨论就地归拢，让你先看清发生了什么，再决定是否深入。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#today">查看今日速览</a>
+        <a class="btn btn-ghost" href="#topics">浏览话题合集</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>每日</b><small>更新频次</small></div>
+        <div><b>5</b><small>常设栏目</small></div>
+        <div><b>俄语圈</b><small>内容来源范围</small></div>
+        <div><b>吃瓜</b><small>内容定位</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODAY -->
+  <section id="today">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">TODAY / 今日速览</div>
+        <h2>每日大赛俄罗斯 · 当日条目时间线</h2>
+        <p class="sec-desc">按发生与扩散的先后顺序排列，每条只保留核心事实与讨论焦点，避免把旧内容重复堆到首页。</p>
+      </div>
+      <div class="timeline">
+        <article class="tl-item">
+          <div class="tl-card">
+            <div class="tl-meta"><span class="tag">爆料</span><span>讨论热度上升</span></div>
+            <h3>新一期大赛话题出现集中讨论</h3>
+            <p>每日大赛俄罗斯的讨论热度在午后明显上升，围绕选手表现与现场细节的截图在多个群组间转发，形成当天第一波关注。</p>
+          </div>
+        </article>
+        <article class="tl-item">
+          <div class="tl-card">
+            <div class="tl-meta"><span class="tag">争议</span><span>多方说法并存</span></div>
+            <h3>关于评判标准的质疑被反复提及</h3>
+            <p>部分观众对环节设置提出疑问，另有声音认为信息被截取后失真。每日大赛俄罗斯相关讨论中，两种说法并行，尚未出现统一结论。</p>
+          </div>
+        </article>
+        <article class="tl-item">
+          <div class="tl-card">
+            <div class="tl-meta"><span class="tag">吃瓜</span><span>社交平台扩散</span></div>
+            <h3>片段化内容成为主要传播形式</h3>
+            <p>传播以短视频片段与聊天记录截屏为主，完整语境较少。浏览每日大赛俄罗斯条目时，建议先确认原始出处再判断内容可信度。</p>
+          </div>
+        </article>
+        <article class="tl-item">
+          <div class="tl-card">
+            <div class="tl-meta"><span class="tag">后续</span><span>等待回应</span></div>
+            <h3>相关方尚未给出正式说明</h3>
+            <p>截至条目整理时，当事方未公开发布回应。每日大赛俄罗斯首页会在出现明确表态后补充新条目，旧条目保留原貌不改写。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTIONS -->
+  <section id="sections" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">COLUMNS / 热门栏目</div>
+        <h2>每日大赛俄罗斯的五个常设分区</h2>
+        <p class="sec-desc">不同分区承担不同任务：有的负责快，有的负责全，有的负责把来龙去脉讲清楚。</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a5308" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3>即时速递</h3>
+          <p>以分钟级速度记录每日大赛俄罗斯当天冒出的新说法，先占位、后补证，适合只想快速扫一眼的读者。</p>
+          <span class="more">→ 按时间读</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a5308" stroke-width="2" stroke-linecap="round"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M15 4v5h5"/></svg>
+          </div>
+          <h3>爆料归档</h3>
+          <p>把分散的截图、录音转述与帖子整理成条目，标注来源与时间。每日大赛俄罗斯的旧料在这里沉淀，不混入新热榜。</p>
+          <span class="more">→ 查旧条目</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a5308" stroke-width="2" stroke-linecap="round"><path d="M3 21v-7M9 21V9M15 21V4M21 21v-9"/></svg>
+          </div>
+          <h3>争议对照</h3>
+          <p>同一件事的不同说法并列呈现，标明哪一方、哪一句、在什么场合说的，帮助判断每日大赛俄罗斯话题中的分歧点。</p>
+          <span class="more">→ 看两方说法</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a5308" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.6 5.6L21 9.5l-4.5 4.3 1.1 6.2L12 17l-5.6 3 1.1-6.2L3 9.5l6.4-.9z"/></svg>
+          </div>
+          <h3>人物风向</h3>
+          <p>记录每日大赛俄罗斯讨论中出现频次较高的人物与角色，只写公开可查的表现与表态，不做主观定性。</p>
+          <span class="more">→ 看人物条目</span>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a5308" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+          </div>
+          <h3>语境补全</h3>
+          <p>针对被截断的片段补充前后文，说明时间、场合与说话对象。每日大赛俄罗斯的吃瓜内容若无语境，容易越传越偏。</p>
+          <span class="more">→ 补上下文</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section id="topics" class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">TOPICS / 话题合集</div>
+        <h2>每日大赛俄罗斯 · 正在被反复讨论的几类话题</h2>
+        <p class="sec-desc">合集按主题而非时间组织，同一个话题下可以串起多天的条目，适合想一次看全的读者。</p>
+      </div>
+      <div class="band-grid">
+        <article class="band-item">
+          <div class="num">01</div>
+          <h3>赛制与规则讨论</h3>
+          <p>围绕环节设置、评分口径的争论反复出现，是每日大赛俄罗斯话题中持续最久的一类，参与者从观众延伸到自称了解内情的人。</p>
+        </article>
+        <article class="band-item">
+          <div class="num">02</div>
+          <h3>现场细节与片段</h3>
+          <p>短视频与截图构成主要素材，信息密度高但完整性低。每日大赛俄罗斯条目会标注素材是否为二次剪辑。</p>
+        </article>
+        <article class="band-item">
+          <div class="num">03</div>
+          <h3>人物表态与回应</h3>
+          <p>公开渠道的发言被单独摘出，按人物归集。没有公开发言的，不代拟措辞，也不以“疑似”填充空白。</p>
+        </article>
+        <article class="band-item">
+          <div class="num">04</div>
+          <h3>跨平台传播路径</h3>
+          <p>同一内容在群组、论坛与短视频之间的流转顺序，往往决定了它被理解成什么样。每日大赛俄罗斯会记录扩散节点。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLAIN -->
+  <section id="explain">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">READING / 背景说明</div>
+        <h2>怎么看每日大赛俄罗斯这类热点内容</h2>
+      </div>
+      <div class="reading">
+        <div class="prose">
+          <p><strong>先分清事实与转述。</strong>每日大赛俄罗斯页面上的条目分为两类：一类有可核对的原始出处，如公开发布的公告、可回看的直播片段；另一类只有转述与截图。后者不代表虚假，但确定程度较低，阅读时应区别对待。</p>
+          <p><strong>注意时间差。</strong>吃瓜内容的传播速度快于澄清速度。一条说法在上午扩散，回应可能到晚上才出现。每日大赛俄罗斯按时间线排列，正是为了让这个先后关系保持可见，而不是把新旧信息揉成一段结论。</p>
+          <p><strong>片段不等于全貌。</strong>被广泛转发的十几秒视频，常常缺少前因与语境。每日大赛俄罗斯在“语境补全”分区尽量补上时间、场合与前后对话，补不上的会明确标注为信息缺口。</p>
+          <p><strong>不替当事方下判断。</strong>页面只呈现公开可查的说法与回应，不对动机、对错作结论。读者若需要判断，依据应是条目中标注的来源，而不是页面的措辞倾向。</p>
+        </div>
+        <aside class="side">
+          <h3>阅读提示</h3>
+          <ul>
+            <li>每条都标注来源类型：官方 / 直播 / 转述 / 截图</li>
+            <li>出现新回应时新增条目，不修改旧条目原文</li>
+            <li>无法确认的内容标注为待核实，不写成结论</li>
+            <li>涉及个人隐私的细节不收录、不扩散</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:var(--paper-2);border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">FAQ / 常见疑问</div>
+        <h2>关于每日大赛俄罗斯的常见问题</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>页面多久更新一次？</summary>
+          <p>按日更新。每日大赛俄罗斯的新条目通常在话题出现集中讨论后的一段时间内补入，热度回落的话题转入归档，不再占据首页位置。</p>
+        </details>
+        <details>
+          <summary>内容来源包括哪些？</summary>
+          <p>以公开可见的社交平台帖子、可回看的直播片段与公开发布的说法为主。无法追溯原始出处的转述，会单独标注来源类型，不与可核对内容混排。</p>
+        </details>
+        <details>
+          <summary>为什么有些条目只写“等待回应”？</summary>
+          <p>因为截至整理时确实没有公开发言。每日大赛俄罗斯不代拟措辞，也不以推测填补空白，出现正式回应后会新增条目说明。</p>
+        </details>
+        <details>
+          <summary>能否提交自己看到的内容？</summary>
+          <p>可以。提交时请附上原始链接与大致时间，便于核对。涉及个人隐私、未公开身份信息的内容不会被收录。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#22242e"/>
+          <path d="M12 42l11-20 9 13 6-9 13 16z" fill="#c58a1e"/>
+          <circle cx="47" cy="20" r="5.5" fill="#c0392b"/>
+        </svg>
+        每日大赛俄罗斯
+      </div>
+      <div class="foot-links">
+        <a href="#today">今日速览</a>
+        <a href="#sections">热门栏目</a>
+        <a href="#topics">话题合集</a>
+        <a href="#explain">背景说明</a>
+        <a href="#faq">常见疑问</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>每日大赛俄罗斯 · 热点内容聚合首页</span>
+      <span>条目按时间线与主题双轨组织，内容以公开来源为准</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
