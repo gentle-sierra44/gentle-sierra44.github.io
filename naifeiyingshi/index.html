@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>奈菲影视-奈菲影视热门影视资源_奈菲影视片单与观影入口</title>
+<meta name="description" content="奈菲影视首页，聚合热门剧集与电影片单，按类型与热度梳理观影选择，提供清晰的内容分类与播放入口，方便快速找到想看的内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1115'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%23ff3b3b'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0f1115;
+    --bg-soft:#151922;
+    --card:#1a1f2b;
+    --line:rgba(255,255,255,.08);
+    --text:#eef1f6;
+    --muted:#9aa3b2;
+    --red:#ff3b3b;
+    --red-soft:rgba(255,59,59,.12);
+    --radius:16px;
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  /* 头部 */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,17,21,.86);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:18px;height:66px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;white-space:nowrap}
+  .logo .mark{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(145deg,#ff3b3b,#b71c1c);
+    display:grid;place-items:center;flex:0 0 auto;
+    box-shadow:0 6px 18px rgba(255,59,59,.28);
+  }
+  .logo .mark svg{width:16px;height:16px}
+  .nav-links{display:flex;gap:6px;flex-wrap:wrap}
+  .nav-links a{
+    font-size:14px;color:var(--muted);padding:8px 13px;border-radius:9px;
+    transition:.2s;
+  }
+  .nav-links a:hover,.nav-links a:focus-visible{color:#fff;background:var(--red-soft)}
+  .nav-cta{
+    font-size:14px;font-weight:600;padding:9px 18px;border-radius:10px;
+    background:var(--red);color:#fff;white-space:nowrap;transition:.2s;
+  }
+  .nav-cta:hover{background:#e02f2f}
+
+  /* 首屏 */
+  .hero{
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(680px 340px at 82% -10%,rgba(255,59,59,.20),transparent 70%),
+      radial-gradient(520px 300px at 8% 110%,rgba(60,110,255,.14),transparent 70%),
+      linear-gradient(180deg,#12151c,#0f1115);
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:44px;
+    align-items:center;padding:62px 0 58px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:#ffb3b3;background:var(--red-soft);
+    border:1px solid rgba(255,59,59,.3);border-radius:999px;
+    padding:5px 13px;margin-bottom:20px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(255,59,59,.18)}
+  h1{
+    font-size:clamp(30px,4.2vw,46px);
+    line-height:1.2;font-weight:800;letter-spacing:.5px;
+    margin-bottom:18px;
+  }
+  h1 .accent{color:var(--red)}
+  .hero p.lead{
+    color:var(--muted);font-size:16px;max-width:36em;margin-bottom:26px;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:15px;font-weight:600;padding:12px 24px;border-radius:12px;
+    transition:.2s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 10px 26px rgba(255,59,59,.26)}
+  .btn-primary:hover{background:#e02f2f}
+  .btn-ghost{border-color:rgba(255,255,255,.18);color:var(--text);background:rgba(255,255,255,.03)}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.07)}
+  .btn[aria-disabled="true"]{opacity:.86;pointer-events:none;cursor:default}
+
+  .hero-stats{display:flex;gap:30px;margin-top:34px;flex-wrap:wrap}
+  .hero-stats div strong{display:block;font-size:22px;font-weight:800;color:#fff}
+  .hero-stats div span{font-size:13px;color:var(--muted)}
+
+  /* 首屏视觉卡 */
+  .poster-stack{position:relative;height:330px}
+  .poster{
+    position:absolute;border-radius:18px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 24px 50px rgba(0,0,0,.55);
+  }
+  .poster.p1{width:60%;aspect-ratio:3/4;left:0;top:26px;transform:rotate(-6deg);background:linear-gradient(160deg,#28324a,#141822)}
+  .poster.p2{width:60%;aspect-ratio:3/4;right:4%;top:0;transform:rotate(5deg);background:linear-gradient(160deg,#4a1f28,#1a1216)}
+  .poster .poster-tag{
+    position:absolute;left:12px;bottom:12px;font-size:12px;font-weight:600;
+    background:rgba(0,0,0,.55);padding:4px 10px;border-radius:7px;color:#fff;
+  }
+  .poster .poster-art{position:absolute;inset:0;display:grid;place-items:center;opacity:.9}
+  .poster .poster-art svg{width:44%;height:auto}
+
+  /* 通用区块 */
+  section{padding:58px 0}
+  .sec-head{margin-bottom:30px;max-width:44em}
+  .sec-head .kicker{
+    font-size:13px;font-weight:700;letter-spacing:2px;color:var(--red);
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  .sec-head h2{font-size:clamp(22px,2.6vw,29px);font-weight:800;line-height:1.35;margin-bottom:10px}
+  .sec-head p{color:var(--muted);font-size:15px}
+
+  /* 分类筛选 */
+  .filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+  .chip{
+    font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer;
+    background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);
+    transition:.2s;font-family:inherit;
+  }
+  .chip:hover{color:#fff;border-color:rgba(255,255,255,.22)}
+  .chip.active{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+
+  /* 片单卡片 */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:.22s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,59,59,.35);box-shadow:0 18px 34px rgba(0,0,0,.4)}
+  .card .thumb{aspect-ratio:16/9;position:relative;display:grid;place-items:center;overflow:hidden}
+  .card .thumb svg{width:52px;height:52px;opacity:.9}
+  .card .thumb .badge{
+    position:absolute;top:10px;left:10px;font-size:12px;font-weight:600;
+    background:rgba(0,0,0,.5);color:#fff;padding:3px 9px;border-radius:6px;
+  }
+  .card .thumb .rate{
+    position:absolute;top:10px;right:10px;font-size:12px;font-weight:700;
+    background:rgba(255,59,59,.9);color:#fff;padding:3px 8px;border-radius:6px;
+  }
+  .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+  .card p{font-size:13.5px;color:var(--muted);flex:1;margin-bottom:14px}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+  .card .meta a{color:#ff8c8c;font-weight:600}
+  .card .meta a:hover{color:#ffb3b3}
+
+  /* 观影路径 */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .step{
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;position:relative;
+  }
+  .step .num{
+    font-size:13px;font-weight:800;color:var(--red);
+    border:1px solid rgba(255,59,59,.4);border-radius:8px;
+    width:34px;height:34px;display:grid;place-items:center;margin-bottom:16px;
+  }
+  .step h3{font-size:16px;margin-bottom:8px}
+  .step p{font-size:14px;color:var(--muted)}
+
+  /* 深度正文 */
+  .prose-block{
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;
+    padding:38px 36px;
+  }
+  .prose-block h2{font-size:clamp(21px,2.4vw,26px);margin-bottom:18px}
+  .prose-block h3{font-size:16.5px;margin:24px 0 10px;color:#fff}
+  .prose-block p{color:#c3cad6;font-size:15px;margin-bottom:14px}
+  .prose-block ul{margin:0 0 16px 20px;color:#c3cad6;font-size:15px}
+  .prose-block li{margin-bottom:8px}
+
+  /* 下载区 */
+  .download{
+    display:flex;align-items:center;justify-content:space-between;gap:26px;
+    background:linear-gradient(120deg,rgba(255,59,59,.14),rgba(255,59,59,.04));
+    border:1px solid rgba(255,59,59,.3);border-radius:20px;
+    padding:32px 34px;flex-wrap:wrap;
+  }
+  .download h2{font-size:21px;margin-bottom:6px}
+  .download p{color:var(--muted);font-size:14px;max-width:38em}
+  .download .btn[aria-disabled="true"]{opacity:.9}
+
+  /* 页脚 */
+  footer.site{
+    border-top:1px solid var(--line);background:#0c0e12;
+    padding:38px 0 30px;margin-top:10px;
+  }
+  .foot-top{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;margin-bottom:26px}
+  .foot-brand{max-width:30em}
+  .foot-brand .logo{margin-bottom:12px}
+  .foot-brand p{font-size:13.5px;color:var(--muted)}
+  .foot-links{display:flex;gap:46px;flex-wrap:wrap}
+  .foot-links h4{font-size:13px;color:#fff;margin-bottom:12px;letter-spacing:.6px}
+  .foot-links a{display:block;font-size:13.5px;color:var(--muted);margin-bottom:9px}
+  .foot-links a:hover{color:#fff}
+  .foot-bottom{
+    border-top:1px solid var(--line);padding-top:20px;
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    font-size:12.5px;color:#6f7887;
+  }
+
+  /* 响应式 */
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:30px;padding:44px 0 40px}
+    .poster-stack{height:250px;max-width:420px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr}
+    .prose-block{padding:28px 22px}
+    .download{padding:26px 22px}
+  }
+  @media (max-width:680px){
+    .nav{height:auto;padding:12px 0;flex-wrap:wrap}
+    .nav-links{order:3;width:100%;justify-content:flex-start;gap:2px}
+    .nav-links a{padding:6px 10px;font-size:13px}
+    .nav-cta{padding:8px 14px;font-size:13px}
+    .grid{grid-template-columns:1fr}
+    section{padding:42px 0}
+    .hero-stats{gap:20px}
+    .foot-links{gap:30px}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="奈菲影视首页">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7V5z" fill="#fff"/></svg>
+      </span>
+      奈菲影视
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#picks">热门片单</a>
+      <a href="#types">类型分类</a>
+      <a href="#path">观影路径</a>
+      <a href="#about">关于内容</a>
+    </nav>
+    <a class="nav-cta" href="#picks">开始观看</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <div class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>剧集与电影 · 每日精选</span>
+        <h1>奈菲影视</h1>
+        <p class="lead">奈菲影视把热门剧集、口碑电影与经典片单集中呈现，按类型、热度和题材划分清晰入口，让你在几分钟内锁定今晚想看的那一部。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#picks">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5l11 7-11 7V5z" fill="#fff"/></svg>
+            浏览热门片单
+          </a>
+          <a class="btn btn-ghost" href="#types">按类型查找</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>6 大</strong><span>内容类型</span></div>
+          <div><strong>12 部</strong><span>精选片单</span></div>
+          <div><strong>每日</strong><span>片单更新</span></div>
+        </div>
+      </div>
+
+      <div class="poster-stack" aria-hidden="true">
+        <div class="poster p1">
+          <div class="poster-art">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#7f8db0" stroke-width="1.5"/><path d="M10 9.5l5 2.5-5 2.5v-5z" fill="#7f8db0"/></svg>
+          </div>
+          <span class="poster-tag">都市剧集</span>
+        </div>
+        <div class="poster p2">
+          <div class="poster-art">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9l8-5 8 5v10" stroke="#e08896" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="14" r="2.4" stroke="#e08896" stroke-width="1.5"/></svg>
+          </div>
+          <span class="poster-tag">悬疑电影</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 热门片单 -->
+  <section id="picks">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Editor's Picks</div>
+        <h2>奈菲影视热门片单</h2>
+        <p>从近期讨论度较高的作品里挑出一批，标注题材与看点，方便你按兴趣直接进入。</p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="按类型筛选片单">
+        <button class="chip active" data-filter="all">全部</button>
+        <button class="chip" data-filter="剧集">剧集</button>
+        <button class="chip" data-filter="电影">电影</button>
+        <button class="chip" data-filter="动画">动画</button>
+        <button class="chip" data-filter="纪录">纪录</button>
+      </div>
+
+      <div class="grid" id="cardGrid">
+        <article class="card" data-type="剧集">
+          <div class="thumb" style="background:linear-gradient(140deg,#2a3550,#141822)">
+            <span class="badge">剧集</span><span class="rate">9.1</span>
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#9fb0d8" stroke-width="1.4"/><path d="M10 10l4.5 2-4.5 2v-4z" fill="#9fb0d8"/></svg>
+          </div>
+          <div class="body">
+            <h3>长夜微光</h3>
+            <p>都市群像剧，以夜间工作者的视角展开，节奏克制，适合一次看两三集。</p>
+            <div class="meta"><span>剧情 / 都市</span><a href="#path">查看入口</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-type="电影">
+          <div class="thumb" style="background:linear-gradient(140deg,#4a222c,#191216)">
+            <span class="badge">电影</span><span class="rate">8.7</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V8l8-4 8 4v11" stroke="#e093a0" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="13" r="2.6" stroke="#e093a0" stroke-width="1.4"/></svg>
+          </div>
+          <div class="body">
+            <h3>雾港第七夜</h3>
+            <p>悬疑推理片，线索铺陈扎实，结尾反转不靠强行解释，适合喜欢细看细节的观众。</p>
+            <div class="meta"><span>悬疑 / 犯罪</span><a href="#path">查看入口</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-type="动画">
+          <div class="thumb" style="background:linear-gradient(140deg,#1f3b3a,#121a1a)">
+            <span class="badge">动画</span><span class="rate">9.3</span>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7.5" stroke="#8fd0c4" stroke-width="1.4"/><path d="M9.5 10.5h1.2M13.3 10.5h1.2M9 14c1 1.2 5 1.2 6 0" stroke="#8fd0c4" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <div class="body">
+            <h3>纸鸢与海</h3>
+            <p>手绘质感的成长动画，配乐出色，画面留白多，适合全家一起看。</p>
+            <div class="meta"><span>动画 / 治愈</span><a href="#path">查看入口</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-type="纪录">
+          <div class="thumb" style="background:linear-gradient(140deg,#3a3320,#171410)">
+            <span class="badge">纪录</span><span class="rate">8.9</span>
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="#d5bd8a" stroke-width="1.4"/><circle cx="12" cy="12" r="3" stroke="#d5bd8a" stroke-width="1.4"/></svg>
+          </div>
+          <div class="body">
+            <h3>山脊之外</h3>
+            <p>自然人文纪录片，跟拍高原测绘队一整年，画面与旁白都保持朴素。</p>
+            <div class="meta"><span>纪录 / 自然</span><a href="#path">查看入口</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-type="剧集">
+          <div class="thumb" style="background:linear-gradient(140deg,#2d2440,#141019)">
+            <span class="badge">剧集</span><span class="rate">8.5</span>
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#b7a6dd" stroke-width="1.4"/><path d="M10 10l4.5 2-4.5 2v-4z" fill="#b7a6dd"/></svg>
+          </div>
+          <div class="body">
+            <h3>旧城书店</h3>
+            <p>慢节奏生活剧，围绕一间老书店的日常，台词密度高、生活感强。</p>
+            <div class="meta"><span>生活 / 温情</span><a href="#path">查看入口</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-type="电影">
+          <div class="thumb" style="background:linear-gradient(140deg,#213547,#111820)">
+            <span class="badge">电影</span><span class="rate">8.2</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 18l4-12 4 8 3-5 3 9" stroke="#8fb4dc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="body">
+            <h3>向北的列车</h3>
+            <p>公路题材剧情片，摄影出色，讲一次迟到多年的返乡旅程。</p>
+            <div class="meta"><span>剧情 / 公路</span><a href="#path">查看入口</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 类型分类 -->
+  <section id="types">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">Browse by Genre</div>
+        <h2>奈菲影视类型分类</h2>
+        <p>不确定想看什么时，从类型切入往往更快。以下分类对应片单中的主要题材，点击即可回到上方筛选。</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>剧集与连续剧</h3>
+          <p>适合通勤与睡前分段观看，都市、生活、悬疑三类为主，单集时长多在 40 分钟左右。</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>电影长片</h3>
+          <p>一次看完的完整叙事，悬疑、剧情、公路题材占多数，适合周末整段时间安排。</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>动画与纪录片</h3>
+          <p>动画偏治愈与手绘风格，纪录片以自然人文为主，节奏舒缓，适合家庭观看。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 观影路径 -->
+  <section id="path">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">How to Watch</div>
+        <h2>在奈菲影视找到想看的内容</h2>
+        <p>三条常用路径，覆盖「已有目标」「只想随便看看」「想按心情挑」三种情况。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">A</div>
+          <h3>已有明确目标</h3>
+          <p>直接在上方片单里按名称浏览，卡片上标注了题材与看点，确认后进入对应播放入口。</p>
+        </div>
+        <div class="step">
+          <div class="num">B</div>
+          <h3>先筛类型再挑片</h3>
+          <p>使用片单上方的类型按钮，一键筛出剧集、电影、动画或纪录片，缩小选择范围。</p>
+        </div>
+        <div class="step">
+          <div class="num">C</div>
+          <h3>按心情随机发现</h3>
+          <p>从评分 8.5 以上的卡片中随手挑一部，评分与题材标签可作为快速判断依据。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 内容说明 -->
+  <section id="about">
+    <div class="wrap">
+      <div class="prose-block">
+        <h2>关于奈菲影视的内容组织</h2>
+        <p>奈菲影视是一个以片单为核心的内容页面。与按字母或上线时间排列的目录不同，这里更强调「为什么值得看」：每张卡片除了片名，还会写明题材、节奏特点和适合的观看场景，让选择过程本身更省时间。</p>
+
+        <h3>片单如何挑选</h3>
+        <p>首页片单优先覆盖近期讨论度较高、观众反馈较集中的作品，同时保留一部分经典作品作为补充。评分采用页面内统一口径展示，用于横向比较，不代表绝对质量。题材标签则按作品的主要叙事类型归类，一部作品通常只保留一个主标签，避免分类过细导致难以查找。</p>
+
+        <h3>页面更新与信息范围</h3>
+        <p>片单会随内容上线情况调整，卡片上的作品信息以页面当前展示为准。奈菲影视不提供作品本身的制作信息核查，也不对第三方播放源的内容负责；页面所呈现的题材、节奏描述属于编辑视角的概括，仅供观影选择时参考。</p>
+
+        <h3>适合哪些观众</h3>
+        <ul>
+          <li>时间有限、希望几分钟内决定看什么的观众；</li>
+          <li>偏好某一类型，想快速筛出对应作品的观众；</li>
+          <li>喜欢先了解题材与节奏，再决定是否投入时间的观众。</li>
+        </ul>
+        <p>如果你已经知道想看什么，直接使用片单区域即可；如果只是想找点东西打发时间，建议从评分较高、题材合口味的卡片入手。奈菲影视希望把这个选择过程压缩到最短。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载 -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h2>奈菲影视片单速查</h2>
+          <p>将首页精选片单整理为离线清单，包含片名、题材与评分，方便随时对照查看。</p>
+        </div>
+        <a class="btn btn-primary" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7V5z" fill="#fff"/></svg>
+          </span>
+          奈菲影视
+        </div>
+        <p>奈菲影视以片单方式组织剧集、电影、动画与纪录片，标注题材与看点，帮助观众更快做出观影选择。</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>页面导航</h4>
+          <a href="#picks">热门片单</a>
+          <a href="#types">类型分类</a>
+          <a href="#path">观影路径</a>
+          <a href="#about">关于内容</a>
+        </div>
+        <div>
+          <h4>内容分类</h4>
+          <a href="#picks">剧集</a>
+          <a href="#picks">电影</a>
+          <a href="#picks">动画</a>
+          <a href="#picks">纪录片</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 奈菲影视 · 片单与观影入口</span>
+      <span>页面内容以当前展示为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('#cardGrid .card');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var show = (f === 'all') || (card.getAttribute('data-type') === f);
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+  </html>
