@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番茄小说网-番茄小说网在线阅读_免费小说阅读平台</title>
+<meta name="description" content="番茄小说网是免费小说在线阅读平台，提供都市、玄幻、言情、历史、悬疑等热门小说在线阅读。了解番茄小说网的阅读入口、作品分类与书架收藏方式，轻松找到下一本好书。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e8452f'/%3E%3Cpath d='M32 15c6 5 9 10 9 16a9 9 0 0 1-18 0c0-6 3-11 9-16z' fill='%23fff3e4'/%3E%3Cpath d='M32 22c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z' fill='%23e8452f'/%3E%3Cpath d='M24 40c2 5 5 8 8 8s6-3 8-8' stroke='%23fff3e4' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --red:#e8452f;
+    --red-deep:#c4321f;
+    --cream:#fdf7f0;
+    --paper:#ffffff;
+    --ink:#2a2320;
+    --ink-soft:#5f554f;
+    --line:#eee2d6;
+    --gold:#c98b3c;
+    --shadow:0 10px 30px rgba(120,60,30,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px;}
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(253,247,240,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{display:flex;align-items:center;gap:26px;height:68px;}
+  .brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .brand .mark{width:36px;height:36px;flex-shrink:0;}
+  .brand .name{
+    font-size:19px;font-weight:800;letter-spacing:.5px;color:var(--red-deep);
+    white-space:nowrap;
+  }
+  nav.main{display:flex;gap:22px;font-size:15px;color:var(--ink-soft);margin-left:auto;}
+  nav.main a{padding:6px 0;border-bottom:2px solid transparent;transition:.2s;}
+  nav.main a:hover{color:var(--red);border-bottom-color:var(--red);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    padding:10px 20px;border-radius:999px;font-size:15px;font-weight:600;
+    background:var(--red);color:#fff;border:1px solid var(--red);
+    transition:.2s;white-space:nowrap;
+  }
+  .btn:hover{background:var(--red-deep);border-color:var(--red-deep);}
+  .btn.ghost{background:transparent;color:var(--red);}
+  .btn.ghost:hover{background:rgba(232,69,47,.08);}
+  .btn[aria-disabled="true"]{opacity:.55;cursor:default;}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;
+    padding:7px 11px;font-size:14px;color:var(--ink-soft);cursor:pointer;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:54px 0 46px;position:relative;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;right:-140px;top:-120px;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(232,69,47,.10),transparent 68%);
+    border-radius:50%;pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--red-deep);background:#fbe6df;padding:5px 14px;border-radius:999px;
+    letter-spacing:.5px;margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(30px,4.4vw,46px);line-height:1.25;font-weight:900;
+    letter-spacing:.5px;color:var(--ink);margin-bottom:18px;
+  }
+  h1 em{font-style:normal;color:var(--red);}
+  .hero p.lead{font-size:16.5px;color:var(--ink-soft);max-width:33em;margin-bottom:14px;}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .hero-stats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap;}
+  .stat b{display:block;font-size:24px;font-weight:900;color:var(--red-deep);line-height:1.2;}
+  .stat span{font-size:13px;color:var(--ink-soft);}
+
+  .shelf-card{
+    background:var(--paper);border-radius:22px;padding:24px;box-shadow:var(--shadow);
+    border:1px solid var(--line);position:relative;
+  }
+  .shelf-card h2{font-size:16px;font-weight:800;margin-bottom:4px;}
+  .shelf-card .sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .book-row{
+    display:flex;gap:13px;padding:11px 0;border-top:1px dashed var(--line);align-items:center;
+  }
+  .book-row:first-of-type{border-top:none;}
+  .cover{
+    width:44px;height:58px;border-radius:6px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;color:#fff;text-align:center;line-height:1.2;padding:3px;
+  }
+  .c1{background:linear-gradient(150deg,#e8452f,#a92a18);}
+  .c2{background:linear-gradient(150deg,#3e6f9e,#254a70);}
+  .c3{background:linear-gradient(150deg,#b0772f,#7c4c15);}
+  .c4{background:linear-gradient(150deg,#5a8a5c,#326237);}
+  .book-row .meta strong{font-size:14px;font-weight:700;display:block;}
+  .book-row .meta small{font-size:12px;color:var(--ink-soft);}
+
+  /* ---------- section base ---------- */
+  section{padding:52px 0;}
+  section.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sec-head{margin-bottom:30px;max-width:44em;}
+  .sec-head .tag{
+    font-size:12.5px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;
+  }
+  .sec-head h2{font-size:clamp(21px,2.7vw,27px);font-weight:900;margin:6px 0 10px;letter-spacing:.4px;}
+  .sec-head p{font-size:15px;color:var(--ink-soft);}
+
+  /* ---------- category cards ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;
+    transition:.22s;box-shadow:0 2px 0 rgba(200,150,120,.05);
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#e9cdbd;}
+  .card .ico{width:34px;height:34px;margin-bottom:12px;}
+  .card h3{font-size:16.5px;font-weight:800;margin-bottom:7px;}
+  .card p{font-size:14px;color:var(--ink-soft);}
+
+  /* ---------- reading flow ---------- */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--paper);}
+  .flow div{padding:24px 20px;border-left:1px solid var(--line);}
+  .flow div:first-child{border-left:none;}
+  .flow .num{font-size:13px;font-weight:900;color:var(--red);letter-spacing:1px;}
+  .flow h3{font-size:15.5px;font-weight:800;margin:6px 0 6px;}
+  .flow p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- article + aside ---------- */
+  .split{display:grid;grid-template-columns:1.6fr .9fr;gap:44px;align-items:start;}
+  .prose h2{font-size:22px;font-weight:900;margin-bottom:14px;}
+  .prose h3{font-size:16.5px;font-weight:800;margin:22px 0 8px;color:var(--red-deep);}
+  .prose p{font-size:15.5px;color:#463d38;margin-bottom:12px;}
+  .prose ul{list-style:none;margin:6px 0 14px;}
+  .prose li{position:relative;padding-left:20px;font-size:15px;color:#463d38;margin-bottom:7px;}
+  .prose li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:2px;background:var(--red);opacity:.75;}
+  aside.side{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);}
+  aside.side h3{font-size:15.5px;font-weight:800;margin-bottom:14px;}
+  .rank li{display:flex;gap:11px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px;}
+  .rank li:last-child{border-bottom:none;}
+  .rank .r{font-size:12.5px;font-weight:900;color:var(--red);width:20px;flex-shrink:0;}
+  .rank small{display:block;font-size:12px;color:var(--ink-soft);}
+  .side-note{margin-top:18px;padding:13px 15px;background:#fbf1e9;border-radius:12px;font-size:13px;color:var(--ink-soft);}
+
+  /* ---------- faq ---------- */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  details{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 20px;
+  }
+  details[open]{border-color:#e9cdbd;box-shadow:var(--shadow);}
+  summary{font-size:15px;font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:22px;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";position:absolute;right:0;top:-2px;color:var(--red);font-weight:900;font-size:18px;}
+  details[open] summary::after{content:"–";}
+  details p{font-size:14px;color:var(--ink-soft);margin-top:10px;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:linear-gradient(135deg,#e8452f,#b3321e);border-radius:22px;
+    padding:40px 36px;color:#fff;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;
+  }
+  .cta h2{font-size:clamp(20px,2.6vw,26px);font-weight:900;margin-bottom:8px;}
+  .cta p{font-size:14.5px;opacity:.92;max-width:36em;}
+  .cta .btn{background:#fff;color:var(--red-deep);border-color:#fff;}
+  .cta .btn:hover{background:#ffe9df;border-color:#ffe9df;}
+
+  /* ---------- footer ---------- */
+  footer{background:#2a2320;color:#cfc4bd;padding:42px 0 26px;font-size:13.5px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;margin-bottom:28px;}
+  footer .brand .name{color:#fff;}
+  footer p{color:#a99d96;line-height:1.8;margin-top:10px;}
+  footer h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:10px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:7px;}
+  footer a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid #423a35;padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;color:#8f837c;font-size:12.5px;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    nav.main{
+      display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;
+      background:var(--paper);border-bottom:1px solid var(--line);padding:14px 22px 20px;gap:2px;
+      box-shadow:var(--shadow);
+    }
+    nav.main.open{display:flex;}
+    nav.main a{padding:11px 0;border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;margin-left:auto;}
+    .bar .btn.ghost{display:none;}
+    .hero-grid{grid-template-columns:1fr;gap:34px;}
+    .hero{padding:36px 0 40px;}
+    .cards{grid-template-columns:1fr 1fr;}
+    .flow{grid-template-columns:1fr 1fr;}
+    .flow div:nth-child(3){border-left:none;}
+    .flow div:nth-child(n+3){border-top:1px solid var(--line);}
+    .split{grid-template-columns:1fr;gap:32px;}
+    .faq{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;gap:24px;}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 18px;}
+    .cards{grid-template-columns:1fr;}
+    .flow{grid-template-columns:1fr;}
+    .flow div{border-left:none;border-top:1px solid var(--line);}
+    .flow div:first-child{border-top:none;}
+    .hero-stats{gap:22px;}
+    .cta{padding:30px 24px;}
+    section{padding:40px 0;}
+    .brand .name{font-size:17px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="番茄小说网首页">
+      <svg class="mark" viewBox="0 0 64 64" role="img" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#e8452f"/>
+        <path d="M32 15c6 5 9 10 9 16a9 9 0 0 1-18 0c0-6 3-11 9-16z" fill="#fff3e4"/>
+        <path d="M32 22c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z" fill="#e8452f"/>
+        <path d="M24 40c2 5 5 8 8 8s6-3 8-8" stroke="#fff3e4" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="name">番茄小说网</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainnav">导航</button>
+    <nav class="main" id="mainnav">
+      <a href="#cats">作品分类</a>
+      <a href="#flow">阅读流程</a>
+      <a href="#guide">站内说明</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="btn ghost" href="#shelf">我的书架</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker">免费阅读 · 每日更新</span>
+        <h1>番茄小说网</h1>
+        <p class="lead">番茄小说网是一个面向读者的免费小说在线阅读平台，都市、玄幻、言情、历史、悬疑等题材集中呈现。打开就能读，书架自动记录进度，适合碎片时间追更，也适合静下心来完整读完一本。</p>
+        <div class="actions">
+          <a class="btn" href="#cats">进入作品分类</a>
+          <a class="btn ghost" href="#flow">了解阅读流程</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>免费</b><span>在线阅读</span></div>
+          <div class="stat"><b>多端</b><span>书架同步</span></div>
+          <div class="stat"><b>追更</b><span>章节更新</span></div>
+        </div>
+      </div>
+
+      <div class="shelf-card" id="shelf">
+        <h2>书架速览</h2>
+        <p class="sub">示例展示书架收藏与阅读进度的呈现方式</p>
+        <div class="book-row">
+          <div class="cover c1">都市</div>
+          <div class="meta"><strong>都市生活线</strong><small>已读 36 章 · 继续阅读</small></div>
+        </div>
+        <div class="book-row">
+          <div class="cover c2">玄幻</div>
+          <div class="meta"><strong>玄幻修行录</strong><small>已读 12 章 · 待更新</small></div>
+        </div>
+        <div class="book-row">
+          <div class="cover c3">历史</div>
+          <div class="meta"><strong>历史长卷</strong><small>已读 8 章 · 加入书架</small></div>
+        </div>
+        <div class="book-row">
+          <div class="cover c4">悬疑</div>
+          <div class="meta"><strong>悬疑短篇集</strong><small>未读 · 新收藏</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="alt" id="cats">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">Categories</span>
+        <h2>按题材找书，少走弯路</h2>
+        <p>番茄小说网的作品以题材分类组织，读者可以先定大方向，再在分类里按更新状态和字数继续筛选，避免在大量书目中反复翻找。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="20" rx="3" fill="none" stroke="#e8452f" stroke-width="2"/><path d="M10 12h12M10 17h12M10 22h7" stroke="#c98b3c" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>都市与职场</h3>
+          <p>节奏明快、贴近日常的都市故事，适合通勤和午休间隙阅读，章节篇幅通常较短。</p>
+        </article>
+        <article class="card">
+          <svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l3.2 7.4 8 .8-6 5.3 1.7 7.9L16 21.6 9.1 25.4l1.7-7.9-6-5.3 8-.8z" fill="none" stroke="#e8452f" stroke-width="2" stroke-linejoin="round"/></svg>
+          <h3>玄幻与奇幻</h3>
+          <p>世界观完整、成长线清晰的长篇为主，适合连续追更，也适合一次读多章。</p>
+        </article>
+        <article class="card">
+          <svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27S5 20.5 5 13.2A6.2 6.2 0 0 1 16 9a6.2 6.2 0 0 1 11 4.2C27 20.5 16 27 16 27z" fill="none" stroke="#e8452f" stroke-width="2" stroke-linejoin="round"/></svg>
+          <h3>言情与情感</h3>
+          <p>人物关系与情绪铺陈是阅读重点，番茄小说网的言情分类常按完结与连载分开陈列。</p>
+        </article>
+        <article class="card">
+          <svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h9v18H6zM17 8h9v18h-9z" fill="none" stroke="#e8452f" stroke-width="2" stroke-linejoin="round"/><path d="M9 13h3M20 13h3" stroke="#c98b3c" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>历史与军事</h3>
+          <p>重背景设定与叙事层次，适合愿意慢读的读者，章节信息密度相对更高。</p>
+        </article>
+        <article class="card">
+          <svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><circle cx="15" cy="14" r="8" fill="none" stroke="#e8452f" stroke-width="2"/><path d="M21 20l6 6" stroke="#c98b3c" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>悬疑与推理</h3>
+          <p>线索推动阅读，短篇与长篇并存。建议先看简介与首章，再决定是否加入书架。</p>
+        </article>
+        <article class="card">
+          <svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 26V6h12l4 4v16z" fill="none" stroke="#e8452f" stroke-width="2" stroke-linejoin="round"/><path d="M12 14h8M12 19h8" stroke="#c98b3c" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>科幻与轻小说</h3>
+          <p>设定新颖、篇幅灵活的读物，适合想换口味时快速试读，再扩展阅读。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section id="flow">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">How to read</span>
+        <h2>四步开始阅读</h2>
+        <p>番茄小说网的阅读路径比较直接：找书、试读、收藏、追更。每一步都有对应的入口，读者不必注册就能先看内容，再决定是否长期使用书架。</p>
+      </div>
+      <div class="flow">
+        <div><span class="num">01</span><h3>选分类</h3><p>从都市、玄幻、言情等题材进入，缩小书目范围。</p></div>
+        <div><span class="num">02</span><h3>读首章</h3><p>先看简介与第一章，确认文风和节奏是否合口味。</p></div>
+        <div><span class="num">03</span><h3>加书架</h3><p>收藏后自动记录章节进度，下次从断点继续。</p></div>
+        <div><span class="num">04</span><h3>等更新</h3><p>连载作品按更新节奏推送，完结作品可一次读完。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section class="alt" id="guide">
+    <div class="wrap split">
+      <div class="prose">
+        <h2>在番茄小说网，怎样挑到适合自己的书</h2>
+        <p>书目多的时候，判断成本往往比阅读本身更高。番茄小说网把作品信息拆成几个可以直接比较的维度：题材分类、连载状态、章节数量与简介。先看这几项，通常就能排除大部分不合适的选项。</p>
+
+        <h3>先看状态，再看字数</h3>
+        <p>连载中的作品需要等待更新，完结作品可以连续读完。篇幅上，长篇适合每天固定读几章，短篇适合一两个晚上读完。把这两项与自己的阅读时间对上，比单纯看热度更实用。</p>
+
+        <h3>简介与首章是最快的筛选</h3>
+        <ul>
+          <li>简介交代背景与主线，能看出题材是否对路；</li>
+          <li>首章决定叙事节奏和语言风格，读三五百字就有判断；</li>
+          <li>若首章读得顺，加入书架再看后续，不必一次读太多。</li>
+        </ul>
+
+        <h3>书架是长期使用的基础</h3>
+        <p>把正在追的书放进书架，番茄小说网会记录已读章节位置。同时追多本时，书架列表比翻历史记录更清楚，也更适合按题材分组管理。</p>
+
+        <h3>更新提醒与阅读节奏</h3>
+        <p>连载作品的价值在于持续更新。对更新较慢的书，不必每天刷新，用收藏状态查看即可；对更新稳定的书，可以按章节批量阅读，避免频繁中断阅读体验。</p>
+
+        <h3>关于免费阅读的说明</h3>
+        <p>番茄小说网以免费在线阅读为主要形态，读者无需付费即可浏览作品内容。具体作品的章节开放范围以页面实际显示为准，遇到未开放章节时，页面会给出提示，不会自动扣费。</p>
+
+        <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
+          <a class="btn" href="#cats">按分类浏览作品</a>
+          <a class="btn ghost" href="#faq">查看常见问题</a>
+        </div>
+      </div>
+
+      <aside class="side">
+        <h3>本周阅读热度参考</h3>
+        <ul class="rank">
+          <li><span class="r">1</span><div>都市生活线<small>都市 · 连载中</small></div></li>
+          <li><span class="r">2</span><div>玄幻修行录<small>玄幻 · 连载中</small></div></li>
+          <li><span class="r">3</span><div>历史长卷<small>历史 · 已完结</small></div></li>
+          <li><span class="r">4</span><div>悬疑短篇集<small>悬疑 · 短篇集</small></div></li>
+          <li><span class="r">5</span><div>言情四季<small>言情 · 已完结</small></div></li>
+        </ul>
+        <div class="side-note">榜单为示例展示，用于说明番茄小说网在首页呈现作品信息的方式，实际书目以站内分类页为准。</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">FAQ</span>
+        <h2>常见问题</h2>
+        <p>关于阅读入口、书架和更新的几个高频疑问，集中说明如下。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>番茄小说网需要付费才能阅读吗？</summary>
+          <p>平台以免费在线阅读为主要形态，读者可直接浏览作品内容。个别章节的开放情况以页面实际显示为准。</p>
+        </details>
+        <details>
+          <summary>书架会记录阅读进度吗？</summary>
+          <p>收藏到书架后，系统会记录已读章节位置，下次打开可从断点继续阅读。</p>
+        </details>
+        <details>
+          <summary>连载作品多久更新一次？</summary>
+          <p>更新节奏由作品自身安排，通常在作品详情页可见最近更新时间和最新章节。</p>
+        </details>
+        <details>
+          <summary>手机和电脑能同步书架吗？</summary>
+          <p>在登录同一账号的情况下，书架与阅读进度可以在不同设备上保持一致。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>从番茄小说网开始下一本</h2>
+          <p>选一个题材，读一章试试。喜欢就放进书架，不喜欢就换一本，阅读本来就该轻松一些。</p>
+        </div>
+        <a class="btn" href="#cats">立即挑选作品</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#e8452f"/>
+            <path d="M32 15c6 5 9 10 9 16a9 9 0 0 1-18 0c0-6 3-11 9-16z" fill="#fff3e4"/>
+            <path d="M32 22c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z" fill="#e8452f"/>
+          </svg>
+          <span class="name">番茄小说网</span>
+        </a>
+        <p>番茄小说网提供都市、玄幻、言情、历史、悬疑等题材的免费在线阅读，书架记录进度，方便随时接着读。</p>
+      </div>
+      <div>
+        <h4>站内导航</h4>
+        <ul>
+          <li><a href="#cats">作品分类</a></li>
+          <li><a href="#flow">阅读流程</a></li>
+          <li><a href="#guide">站内说明</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>阅读相关</h4>
+        <ul>
+          <li><a href="#shelf">书架速览</a></li>
+          <li><a href="#cats">题材筛选</a></li>
+          <li><a href="#faq">进度同步</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 番茄小说网 · 免费小说在线阅读</span>
+      <span>作品信息以站内实际页面为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('mainnav');
+    if(btn && nav){
+      btn.addEventListener('click', function(){
+        var open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A' && nav.classList.contains('open')){
+          nav.classList.remove('open');
+          btn.setAttribute('aria-expanded','false');
+        }
+      });
+    }
+  })();
+</script>
+</body>
+              </html>
